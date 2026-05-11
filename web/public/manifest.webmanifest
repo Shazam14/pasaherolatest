@@ -1,0 +1,27 @@
+{
+  "name": "pasaheroph",
+  "short_name": "pasaheroph",
+  "description": "Inter-region travel for the Philippines. Manila ⇆ Baguio and beyond.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fafaf6",
+  "theme_color": "#0c1424",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["travel", "navigation"],
+  "lang": "en-PH"
+}
