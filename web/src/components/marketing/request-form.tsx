@@ -4,6 +4,7 @@ import * as React from "react";
 import { ArrowRight, Check, MapPinned } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { submitRouteRequest, initialActionState } from "@/lib/listening-actions";
 
 const pains = [
   { id: "too_expensive", label: "Too expensive" },
@@ -16,14 +17,19 @@ const pains = [
 
 export function RequestForm() {
   const [pain, setPain] = React.useState<string>("too_expensive");
-  const [submitted, setSubmitted] = React.useState(false);
+  const [state, formAction, pending] = React.useActionState(
+    submitRouteRequest,
+    initialActionState,
+  );
+  const [dismissed, setDismissed] = React.useState(false);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSubmitted(true);
-  }
+  React.useEffect(() => {
+    if (state.ok) setDismissed(false);
+  }, [state]);
 
-  if (submitted) {
+  const showSuccess = state.ok && !dismissed;
+
+  if (showSuccess) {
     return (
       <div className="rounded-2xl border border-[color:var(--success)]/30 bg-[color:var(--success)]/10 p-8">
         <span className="flex size-12 items-center justify-center rounded-full bg-[color:var(--success)]/20 text-[color:var(--success)]">
@@ -39,7 +45,7 @@ export function RequestForm() {
         </p>
         <button
           type="button"
-          onClick={() => setSubmitted(false)}
+          onClick={() => setDismissed(true)}
           className="mt-6 text-sm font-medium text-[color:var(--accent)] underline-offset-4 hover:underline"
         >
           Submit another route
@@ -50,7 +56,7 @@ export function RequestForm() {
 
   return (
     <form
-      onSubmit={onSubmit}
+      action={formAction}
       className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 md:p-8"
     >
       <div className="flex items-center gap-2 text-[color:var(--accent)]">
@@ -139,8 +145,17 @@ export function RequestForm() {
         />
       </fieldset>
 
-      <Button type="submit" size="xl" className="mt-7 w-full">
-        Send my route <ArrowRight className="size-4" />
+      {state.error ? (
+        <p
+          role="alert"
+          className="mt-5 text-sm text-[color:var(--danger)]"
+        >
+          {state.error}
+        </p>
+      ) : null}
+
+      <Button type="submit" size="xl" disabled={pending} className="mt-7 w-full">
+        {pending ? "Sending…" : <>Send my route <ArrowRight className="size-4" /></>}
       </Button>
       <p className="text-xs text-[color:var(--muted)] mt-4 leading-relaxed">
         Closed beta — we read every request personally. No spam, no marketing. We only

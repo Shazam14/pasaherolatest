@@ -32,6 +32,14 @@ export const adPlacement = pgEnum("ad_placement", [
   "receipt",
   "homepage",
 ]);
+export const routeRequestPain = pgEnum("route_request_pain", [
+  "too_expensive",
+  "no_late_night",
+  "no_early_morning",
+  "unsafe_pickup",
+  "no_direct",
+  "other",
+]);
 
 export const users = pgTable("users", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -137,6 +145,27 @@ export const adImpressions = pgTable("ad_impressions", {
   shownAt: timestamp("shown_at", { withTimezone: true }).defaultNow().notNull(),
   clicked: boolean("clicked").notNull().default(false),
   context: varchar("context", { length: 200 }),
+});
+
+export const routeRequests = pgTable("route_requests", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  origin: varchar("origin", { length: 200 }).notNull(),
+  destination: varchar("destination", { length: 200 }).notNull(),
+  pain: routeRequestPain("pain").notNull(),
+  details: text("details"),
+  frequency: varchar("frequency", { length: 100 }),
+  contact: varchar("contact", { length: 255 }).notNull(),
+  userAgent: text("user_agent"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+});
+
+export const feedbackSubmissions = pgTable("feedback_submissions", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  message: text("message").notNull(),
+  contact: varchar("contact", { length: 255 }),
+  pagePath: varchar("page_path", { length: 500 }).notNull(),
+  userAgent: text("user_agent"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
 
 export const operatorRelations = relations(operators, ({ many, one }) => ({
