@@ -83,14 +83,33 @@ The obvious way to game the cap is to declare a thirsty vehicle: claim 4 km/L an
 ceiling doubles. So efficiency is **not** a driver input. It is a constant per
 `vehicleClass` — which is why widening that enum mattered beyond passability.
 
+Each figure is set at the **efficient end** of its class's real range. That direction
+is not arbitrary: `cap = tripCost/(seats+1)`, and better efficiency means lower
+`tripCost`, so assuming a vehicle is thrifty produces a *stricter* cap. Every vehicle
+in a class therefore lands at or below its true share, and nobody profits from being
+in a coarse bucket.
+
 ```ts
-// Conservative figures: err low on consumption, which errs low on the cap.
+// Efficient end of range, deliberately. Getting this backwards inflates every cap.
 export const KM_PER_LITRE: Record<VehicleClass, number> = {
-  tricycle: 35, habal_habal: 45, jeepney: 8, multicab: 12,
-  van: 10, uv_express: 10, bus_regular: 4, bus_premium: 4,
-  truck: 4, suv_4x4: 9,
+  tricycle: 35, habal_habal: 45, sedan: 18, jeepney: 8,
+  multicab: 12, mpv: 13, van: 10, uv_express: 10,
+  bus_regular: 4, bus_premium: 4, truck: 4, suv_4x4: 9,
+};
+
+// Diesel is the cheaper fuel, so it is also the conservative assumption for the
+// classes that actually run on it.
+export const FUEL_BY_CLASS: Partial<Record<VehicleClass, "gasoline" | "diesel">> = {
+  mpv: "diesel", van: "diesel", uv_express: "diesel",
+  jeepney: "diesel", truck: "diesel", bus_regular: "diesel", bus_premium: "diesel",
 };
 ```
+
+`sedan` and `mpv` exist for carpool but earn their place independently: "hindi kaya ng
+sedan, kailangan 4x4" is one of the most common real road reports there is, so both
+are passability categories on their own merits. No `hatchback` — a Mirage and a Vios
+are the same vehicle for both purposes, and every extra class is another figure to
+defend.
 
 Bus classes are listed for completeness only — licensed operators price under a CPC
 and never touch this path.

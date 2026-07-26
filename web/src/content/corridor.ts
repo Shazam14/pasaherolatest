@@ -105,18 +105,23 @@ export const seedSchedules: BusListing[] = [
 //   tripCost = 246km / kmPerLitre x fuelPrice + 600 tolls
 //   cap      = floor(tripCost / (seatsAvailable + 1))
 //
-// The +1 is the driver paying their own share, so no listing can profit. Figures
-// below are illustrative pending real fuel and toll data.
+// The +1 is the driver paying their own share, so no listing can profit. kmPerLitre
+// comes from the vehicle's class, set at the efficient end of its range — which
+// makes the cap stricter, not looser. Figures are illustrative pending real fuel
+// and toll data.
 //
-//   Vios    15km/L @62  trip 1617  4 shares  cap 404
-//   Civic   14km/L @62  trip 1689  4 shares  cap 422
-//   Mirage  19km/L @62  trip 1403  3 shares  cap 467
-//   Innova  12km/L @58  trip 1789  6 shares  cap 298
+//   sedan  18km/L @62  trip 1447   Vios, Civic, Mirage
+//   mpv    13km/L @58  trip 1698   Innova
+//
+//   Vios    3 seats  4 shares  cap 361
+//   Civic   3 seats  4 shares  cap 361
+//   Mirage  2 seats  3 shares  cap 482
+//   Innova  5 seats  6 shares  cap 282
 export const seedCarpools: CarpoolListing[] = [
-  { kind: "carpool", corridorId: "manila-baguio", driver: "juan-cruz", departure: "05:00", arrival: "09:30", price: 400, seatsAvailable: 3 },
-  { kind: "carpool", corridorId: "manila-baguio", driver: "maria-reyes", departure: "06:30", arrival: "11:00", price: 420, seatsAvailable: 3 },
+  { kind: "carpool", corridorId: "manila-baguio", driver: "juan-cruz", departure: "05:00", arrival: "09:30", price: 360, seatsAvailable: 3 },
+  { kind: "carpool", corridorId: "manila-baguio", driver: "maria-reyes", departure: "06:30", arrival: "11:00", price: 360, seatsAvailable: 3 },
   { kind: "carpool", corridorId: "manila-baguio", driver: "kenneth-tan", departure: "08:00", arrival: "12:30", price: 400, seatsAvailable: 2 },
-  { kind: "carpool", corridorId: "manila-baguio", driver: "anna-garcia", departure: "14:00", arrival: "18:30", price: 295, seatsAvailable: 5 },
+  { kind: "carpool", corridorId: "manila-baguio", driver: "anna-garcia", departure: "14:00", arrival: "18:30", price: 280, seatsAvailable: 5 },
 ];
 
 export type AnyListing = BusListing | CarpoolListing;
