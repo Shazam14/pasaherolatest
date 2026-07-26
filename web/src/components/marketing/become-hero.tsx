@@ -35,7 +35,7 @@ export function BecomeHero() {
             </h2>
             <p className="text-lg text-[color:var(--muted)] leading-relaxed mt-5 max-w-xl">
               Gas is up. Tolls are up. If you&apos;re already driving the route, your empty seats
-              are paying you nothing. List them on pasaheroph and let passengers help cover the
+              are paying you nothing. List them on Pasahero PH and let passengers help cover the
               fuel — no commission, no contracts, no quotas.
             </p>
 
@@ -56,7 +56,7 @@ export function BecomeHero() {
 
             <p className="text-xs text-[color:var(--muted)] mt-6 max-w-md leading-relaxed">
               Carpool listings are for fuel-cost sharing among verified members. Drivers retain
-              private-vehicle status — pasaheroph does not operate as a TNVS or commercial carrier.
+              private-vehicle status — Pasahero PH does not operate as a TNVS or commercial carrier.
             </p>
           </div>
 

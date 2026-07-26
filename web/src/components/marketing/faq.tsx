@@ -1,6 +1,6 @@
 const faqs = [
   {
-    q: "Is pasaheroph a ride-hailing app like Grab?",
+    q: "Is Pasahero PH a ride-hailing app like Grab?",
     a: "No. We're an inter-region booking platform — think bus and van seats, not on-demand rides. We aggregate verified operators (Victory Liner, Genesis, Joybus, UV Express, etc.) so you can compare and reserve in one place.",
   },
   {

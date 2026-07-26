@@ -29,7 +29,7 @@ export function WhyUs() {
       <div className="mx-auto max-w-6xl px-5 md:px-8 py-20 md:py-28">
         <div className="flex flex-col gap-3 max-w-2xl mb-14">
           <span className="text-xs uppercase tracking-[0.12em] text-[color:var(--accent)] font-medium">
-            Why pasaheroph
+            Why Pasahero PH
           </span>
           <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.02em]">
             A booking platform that doesn&apos;t bleed the driver.

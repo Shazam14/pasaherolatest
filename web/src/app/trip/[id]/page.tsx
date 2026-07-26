@@ -294,8 +294,8 @@ export default async function TripDetailPage({
 
           <p className="mt-4 text-xs text-[color:var(--muted)] leading-relaxed max-w-2xl">
             {listing.kind === "carpool"
-              ? "Carpool listings are for fuel-cost sharing among verified members. Drivers retain private-vehicle status — pasaheroph does not operate as a TNVS or commercial carrier. Free cancellation up to 6 hours before departure."
-              : "Verified operator. Free cancellation up to 6 hours before departure. The operator receives 100% of the fare — pasaheroph doesn't take a commission."}
+              ? "Carpool listings are for fuel-cost sharing among verified members. Drivers retain private-vehicle status — Pasahero PH does not operate as a TNVS or commercial carrier. Free cancellation up to 6 hours before departure."
+              : "Verified operator. Free cancellation up to 6 hours before departure. The operator receives 100% of the fare — Pasahero PH doesn't take a commission."}
           </p>
         </div>
       </main>

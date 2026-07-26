@@ -32,7 +32,7 @@ export function Logo({ className, showWordmark = true }: { className?: string; s
       </svg>
       {showWordmark ? (
         <span className="font-semibold text-[1.05rem] tracking-tight">
-          pasahero<span className="text-[color:var(--accent)]">ph</span>
+          Pasahero{" "}<span className="text-[color:var(--accent)]">PH</span>
         </span>
       ) : null}
     </div>

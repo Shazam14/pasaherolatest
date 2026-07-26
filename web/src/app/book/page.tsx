@@ -158,7 +158,7 @@ export default async function BookPage({ searchParams }: { searchParams: Promise
                 </div>
                 <p className="text-xs text-[color:var(--muted)] mt-3 leading-relaxed">
                   {kind === "carpool"
-                    ? "Driver receives the full fare to cover fuel — pasaheroph doesn't take a commission. The booking fee covers verification, support, and platform costs."
+                    ? "Driver receives the full fare to cover fuel — Pasahero PH doesn't take a commission. The booking fee covers verification, support, and platform costs."
                     : "Operator receives 100% of the fare. Booking fee covers platform costs — drivers don't pay a commission."}
                 </p>
               </div>

@@ -15,12 +15,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "pasaheroph — Inter-region travel for the Philippines",
-    template: "%s · pasaheroph",
+    default: "Pasahero PH — Inter-region travel for the Philippines",
+    template: "%s · Pasahero PH",
   },
   description:
     "Compare every Manila ⇆ Baguio bus and van in one search. Drivers keep 100% of the fare. We don't take a commission.",
-  applicationName: "pasaheroph",
+  applicationName: "Pasahero PH",
   keywords: [
     "Manila Baguio bus",
     "Victory Liner booking",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "pasaheroph",
+    title: "Pasahero PH",
   },
   formatDetection: { telephone: false },
 };

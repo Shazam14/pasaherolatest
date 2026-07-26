@@ -40,7 +40,7 @@ export function Footer() {
         </div>
         <div className="divider mb-6" />
         <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-4 text-xs text-[color:var(--muted)]">
-          <p>© {new Date().getFullYear()} pasaheroph. Beta — Manila ⇆ Baguio corridor.</p>
+          <p>© {new Date().getFullYear()} Pasahero PH. Beta — Manila ⇆ Baguio corridor.</p>
           <p>
             Built in 🇵🇭 — registered with the National Privacy Commission (pending).
           </p>

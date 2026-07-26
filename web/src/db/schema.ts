@@ -16,7 +16,18 @@ import { relations } from "drizzle-orm";
 
 export const userRole = pgEnum("user_role", ["passenger", "operator", "admin"]);
 export const operatorStatus = pgEnum("operator_status", ["pending", "approved", "suspended"]);
-export const vehicleClass = pgEnum("vehicle_class", ["bus_regular", "bus_premium", "uv_express", "van"]);
+export const vehicleClass = pgEnum("vehicle_class", [
+  "tricycle",
+  "habal_habal",
+  "jeepney",
+  "multicab",
+  "van",
+  "uv_express",
+  "bus_regular",
+  "bus_premium",
+  "truck",
+  "suv_4x4",
+]);
 export const bookingStatus = pgEnum("booking_status", [
   "pending",
   "confirmed",
