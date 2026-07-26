@@ -1,11 +1,8 @@
 import { Nav } from "@/components/marketing/nav";
 import { Footer } from "@/components/marketing/footer";
 import { RequestForm } from "@/components/marketing/request-form";
-import {
-  topRequests,
-  statusLabel,
-  type RouteRequest,
-} from "@/content/requests";
+import { getDemandBoard, type DemandRow } from "@/lib/demand";
+import { painLabel } from "@/content/pains";
 import { ArrowUp, MapPin, MessageSquare } from "lucide-react";
 import Link from "next/link";
 
@@ -15,8 +12,11 @@ export const metadata = {
     "Tell us the route you wish existed. We open corridors where commuters say current options are broken.",
 };
 
-export default function RequestCorridorPage() {
-  const requests = topRequests(6);
+// The board counts live submissions, so it must never be served from cache.
+export const dynamic = "force-dynamic";
+
+export default async function RequestCorridorPage() {
+  const requests = await getDemandBoard(8);
 
   return (
     <>
@@ -45,15 +45,24 @@ export default function RequestCorridorPage() {
                 </span>
               </div>
               <p className="text-sm text-[color:var(--muted)] leading-relaxed mt-3 max-w-md">
-                Real requests from commuters in closed beta. We sort by upvotes — the more
-                people stuck on a route, the higher it goes.
+                Every gap commuters have reported so far, counted live. A route only moves
+                if enough people name the same missing trip.
               </p>
 
-              <ul className="mt-6 space-y-3">
-                {requests.map((r) => (
-                  <RequestRow key={r.id} request={r} />
-                ))}
-              </ul>
+              {requests.length === 0 ? (
+                <div className="mt-6 rounded-xl border border-dashed border-[color:var(--border-strong)] bg-[color:var(--surface)] p-6">
+                  <p className="font-medium tracking-tight">Nothing here yet.</p>
+                  <p className="text-sm text-[color:var(--muted)] mt-1.5 leading-relaxed">
+                    Nobody has reported a gap yet — yours would be the first on the board.
+                  </p>
+                </div>
+              ) : (
+                <ul className="mt-6 space-y-3">
+                  {requests.map((r) => (
+                    <RequestRow key={`${r.origin}-${r.destination}-${r.pain}`} request={r} />
+                  ))}
+                </ul>
+              )}
 
               <p className="text-xs text-[color:var(--muted)] mt-6 leading-relaxed inline-flex items-start gap-1.5">
                 <MapPin className="size-3.5 mt-0.5 flex-shrink-0 text-[color:var(--accent)]" />
@@ -69,14 +78,7 @@ export default function RequestCorridorPage() {
   );
 }
 
-function RequestRow({ request }: { request: RouteRequest }) {
-  const statusColor =
-    request.status === "launching"
-      ? "bg-[color:var(--success)]/15 text-[color:var(--success)]"
-      : request.status === "researching"
-      ? "bg-[color:var(--accent)]/15 text-[color:var(--accent)]"
-      : "bg-[color:var(--surface-muted)] text-[color:var(--muted)]";
-
+function RequestRow({ request }: { request: DemandRow }) {
   return (
     <li className="rounded-xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 flex gap-3">
       <div className="flex flex-col items-center justify-center rounded-lg bg-[color:var(--surface-muted)] px-2.5 py-1.5 min-w-12">
@@ -84,23 +86,15 @@ function RequestRow({ request }: { request: RouteRequest }) {
         <span className="text-sm font-semibold tnum">{request.votes}</span>
       </div>
       <div className="min-w-0 flex-1">
-        <div className="flex items-start justify-between gap-2 flex-wrap">
-          <p className="font-medium tracking-tight">
-            {request.origin}{" "}
-            <span className="text-[color:var(--muted)]">→</span>{" "}
-            {request.destination}
-          </p>
-          <span
-            className={`inline-flex items-center rounded-full px-2 py-0.5 text-[0.65rem] uppercase tracking-[0.08em] font-medium ${statusColor}`}
-          >
-            {statusLabel(request.status)}
-          </span>
-        </div>
+        <p className="font-medium tracking-tight">
+          {request.origin} <span className="text-[color:var(--muted)]">→</span>{" "}
+          {request.destination}
+        </p>
         <p className="text-xs text-[color:var(--muted)] mt-1.5 leading-relaxed">
-          {request.pain}
+          {painLabel(request.pain)}
         </p>
         <p className="text-[0.65rem] uppercase tracking-[0.08em] text-[color:var(--muted)] mt-2">
-          {request.requestedBy} · {request.postedAgo}
+          {request.votes === 1 ? "1 person asking" : `${request.votes} people asking`}
         </p>
       </div>
     </li>

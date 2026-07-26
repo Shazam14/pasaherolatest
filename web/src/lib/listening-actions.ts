@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { headers } from "next/headers";
+import { revalidatePath } from "next/cache";
 import { db, schema } from "@/db/client";
 import type { ActionState } from "./listening-state";
 
@@ -53,6 +54,8 @@ export async function submitRouteRequest(
   try {
     const ua = (await headers()).get("user-agent") ?? null;
     await db.insert(schema.routeRequests).values({ ...parsed.data, userAgent: ua });
+    // The board counts this submission, so it has to reflect it immediately.
+    revalidatePath("/request-corridor");
     return { ok: true };
   } catch {
     return { ok: false, error: "Something broke on our side. Try again." };
