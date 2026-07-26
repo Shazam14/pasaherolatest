@@ -160,7 +160,14 @@ export function RequestForm() {
       </Button>
       <p className="text-xs text-[color:var(--muted)] mt-4 leading-relaxed">
         Closed beta — we read every request personally. No spam, no marketing. We only
-        contact you when your corridor moves forward.
+        contact you when your corridor moves forward. See our{" "}
+        <a
+          href="/legal/privacy"
+          className="underline decoration-[color:var(--accent)] underline-offset-2"
+        >
+          privacy notice
+        </a>
+        .
       </p>
     </form>
   );

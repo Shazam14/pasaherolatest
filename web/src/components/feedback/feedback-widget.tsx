@@ -126,7 +126,10 @@ function FeedbackPanel({ onClose }: { onClose: (submitted: boolean) => void }) {
               {pending ? "Sending…" : <>Send feedback <Send className="size-3.5" /></>}
             </button>
             <p className="text-[0.65rem] uppercase tracking-[0.08em] text-[color:var(--muted)] mt-3 text-center">
-              From {pathname}
+              From {pathname} ·{" "}
+              <a href="/legal/privacy" className="underline underline-offset-2">
+                Privacy
+              </a>
             </p>
           </form>
         )}

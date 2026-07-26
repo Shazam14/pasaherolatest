@@ -195,7 +195,14 @@ export function ApplyForm({ initialType }: { initialType: "operator" | "hero_dri
 
       <p className="text-xs text-[color:var(--muted)] mt-4 leading-relaxed">
         No commission, no contracts, no quotas. We&apos;re pre-launch and we&apos;ll say so plainly
-        rather than waste your time.
+        rather than waste your time. See our{" "}
+        <a
+          href="/legal/privacy"
+          className="underline decoration-[color:var(--accent)] underline-offset-2"
+        >
+          privacy notice
+        </a>
+        .
       </p>
     </form>
   );

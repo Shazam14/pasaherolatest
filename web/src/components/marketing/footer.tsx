@@ -28,6 +28,13 @@ export function Footer() {
               { href: "/#operators", label: "Lines we want on board" },
             ]}
           />
+          <FooterCol
+            title="Legal"
+            links={[
+              { href: "/legal/privacy", label: "Privacy notice" },
+              { href: "/legal/terms", label: "Terms" },
+            ]}
+          />
         </div>
         <div className="divider mb-6" />
         <div className="flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-4 text-xs text-[color:var(--muted)]">
