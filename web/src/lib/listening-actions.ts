@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { headers } from "next/headers";
 import { db, schema } from "@/db/client";
+import type { ActionState } from "./listening-state";
 
 const painValues = [
   "too_expensive",
@@ -27,10 +28,6 @@ const feedbackSchema = z.object({
   contact: z.string().trim().max(255).optional().transform((v) => v || null),
   pagePath: z.string().trim().min(1).max(500),
 });
-
-export type ActionState = { ok: boolean; error?: string };
-
-export const initialActionState: ActionState = { ok: false };
 
 export async function submitRouteRequest(
   _prev: ActionState,

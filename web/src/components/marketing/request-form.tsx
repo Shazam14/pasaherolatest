@@ -4,7 +4,8 @@ import * as React from "react";
 import { ArrowRight, Check, MapPinned } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { submitRouteRequest, initialActionState } from "@/lib/listening-actions";
+import { submitRouteRequest } from "@/lib/listening-actions";
+import { initialActionState } from "@/lib/listening-state";
 
 const pains = [
   { id: "too_expensive", label: "Too expensive" },

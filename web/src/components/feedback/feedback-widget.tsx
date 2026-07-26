@@ -4,7 +4,8 @@ import * as React from "react";
 import { usePathname } from "next/navigation";
 import { Check, MessageCircle, Send, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { submitFeedback, initialActionState } from "@/lib/listening-actions";
+import { submitFeedback } from "@/lib/listening-actions";
+import { initialActionState } from "@/lib/listening-state";
 
 export function FeedbackWidget() {
   const [open, setOpen] = React.useState(false);
