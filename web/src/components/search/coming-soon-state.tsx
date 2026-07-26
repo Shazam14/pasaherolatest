@@ -1,19 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { ArrowRight, BellRing, Check, Clock, MapPin, Route } from "lucide-react";
+import { ArrowRight, BellRing, Clock, MapPin, Route } from "lucide-react";
 import type { Corridor } from "@/content/corridors";
 
 export function ComingSoonState({ corridor }: { corridor: Corridor }) {
-  const [email, setEmail] = React.useState("");
-  const [submitted, setSubmitted] = React.useState(false);
-
-  function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email) return;
-    setSubmitted(true);
-  }
-
   return (
     <div className="grid lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-12 items-start">
       <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 md:p-8">
@@ -47,47 +38,22 @@ export function ComingSoonState({ corridor }: { corridor: Corridor }) {
       <div className="rounded-2xl border border-[color:var(--accent)]/30 bg-gradient-to-br from-[color:var(--accent)]/8 to-transparent p-6 md:p-8">
         <div className="flex items-center gap-2 text-[color:var(--accent)]">
           <BellRing className="size-4" />
-          <span className="text-xs uppercase tracking-[0.12em] font-medium">Get notified</span>
+          <span className="text-xs uppercase tracking-[0.12em] font-medium">Shape the route</span>
         </div>
         <h3 className="text-xl md:text-2xl font-semibold tracking-tight mt-3">
-          Be first when this corridor goes live.
+          Tell us how you travel this route.
         </h3>
         <p className="text-sm text-[color:var(--muted)] leading-relaxed mt-2">
-          One email when {corridor.origin} ⇆ {corridor.destination} opens. No spam, no marketing — just
-          the launch ping.
+          We open {corridor.origin} ⇆ {corridor.destination} where demand is provable. Tell us the
+          times you need and what the trip costs you now — we read every one.
         </p>
 
-        {submitted ? (
-          <div className="mt-5 rounded-xl border border-[color:var(--success)]/30 bg-[color:var(--success)]/10 p-4 flex items-start gap-3">
-            <span className="flex size-8 items-center justify-center rounded-full bg-[color:var(--success)]/20 text-[color:var(--success)] flex-shrink-0">
-              <Check className="size-4" />
-            </span>
-            <div>
-              <p className="font-medium text-[color:var(--success)]">You&apos;re on the list.</p>
-              <p className="text-sm text-[color:var(--muted)] mt-1">
-                We&apos;ll email <span className="text-[color:var(--foreground)]">{email}</span> the
-                moment this corridor goes live.
-              </p>
-            </div>
-          </div>
-        ) : (
-          <form onSubmit={onSubmit} className="mt-5 flex flex-col sm:flex-row gap-2">
-            <input
-              type="email"
-              required
-              placeholder="you@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 rounded-full border border-[color:var(--border-strong)] bg-[color:var(--surface)] px-5 h-12 text-base font-medium outline-none focus:border-[color:var(--accent)] transition-colors"
-            />
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center gap-1.5 rounded-full bg-[color:var(--primary)] text-[color:var(--primary-foreground)] px-6 h-12 text-base font-medium hover:opacity-90 transition-opacity"
-            >
-              Notify me <ArrowRight className="size-4" />
-            </button>
-          </form>
-        )}
+        <a
+          href="/request-corridor"
+          className="mt-5 inline-flex items-center justify-center gap-1.5 rounded-full bg-[color:var(--primary)] text-[color:var(--primary-foreground)] px-6 h-12 text-base font-medium hover:opacity-90 transition-opacity"
+        >
+          Tell us your route <ArrowRight className="size-4" />
+        </a>
 
         <p className="text-xs text-[color:var(--muted)] mt-4 inline-flex items-center gap-1.5">
           <MapPin className="size-3.5" />

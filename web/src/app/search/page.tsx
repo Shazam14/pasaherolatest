@@ -16,6 +16,7 @@ import {
   type AnyListing,
 } from "@/content/corridor";
 import { findCorridor } from "@/content/corridors";
+import { BOOKING_ENABLED } from "@/lib/flags";
 import { readableDate } from "@/lib/format";
 import { ArrowLeft, MapPin } from "lucide-react";
 import Link from "next/link";
@@ -77,7 +78,7 @@ export default async function SearchPage({
         <section className="mx-auto max-w-6xl px-5 md:px-8 py-8 md:py-10">
           {!corridor ? (
             <UnsupportedCorridorState from={from} to={to} />
-          ) : corridor.status === "coming-soon" ? (
+          ) : !BOOKING_ENABLED || corridor.status === "coming-soon" ? (
             <ComingSoonState corridor={corridor} />
           ) : (
             <ActiveResults

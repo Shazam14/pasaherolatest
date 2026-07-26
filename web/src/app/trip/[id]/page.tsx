@@ -22,7 +22,8 @@ import {
   Star,
 } from "lucide-react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { BOOKING_ENABLED } from "@/lib/flags";
 
 type Params = Promise<{ id: string }>;
 type Search = Promise<{ date?: string; pax?: string }>;
@@ -48,6 +49,10 @@ export default async function TripDetailPage({
   params: Params;
   searchParams: Search;
 }) {
+  if (!BOOKING_ENABLED) {
+    redirect("/search?corridor=manila-baguio");
+  }
+
   const { id } = await params;
   const sp = await searchParams;
   const listing = listingById(id);

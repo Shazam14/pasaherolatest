@@ -7,6 +7,7 @@ import Link from "next/link";
 import { BookingForm } from "@/components/booking/booking-form";
 import { ConfirmationCard } from "@/components/booking/confirmation-card";
 import { redirect } from "next/navigation";
+import { BOOKING_ENABLED } from "@/lib/flags";
 
 type Search = {
   kind?: string;
@@ -31,6 +32,10 @@ export const metadata = {
 };
 
 export default async function BookPage({ searchParams }: { searchParams: Promise<Search> }) {
+  if (!BOOKING_ENABLED) {
+    redirect("/search?corridor=manila-baguio");
+  }
+
   const sp = await searchParams;
   const kind = sp.kind === "carpool" ? "carpool" : "bus";
 
