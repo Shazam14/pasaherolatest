@@ -21,18 +21,24 @@ of a trip they were making anyway is cost-sharing. A driver clearing more than t
 trip cost is operating for hire, which needs a franchise, and without one that is
 colorum — whatever the platform calls it.
 
-The current seed data already fails that test:
+The seed data as originally written failed that test — and failed it more broadly
+than a collected-vs-total-cost comparison suggests. Against the per-seat cap in §2:
 
-| Driver (`content/corridor.ts`) | Seats × price | Collected |
-|---|---|---|
-| kenneth-tan | 2 × ₱400 | ₱800 |
-| juan-cruz | 3 × ₱450 | ₱1,350 |
-| maria-reyes | 3 × ₱500 | ₱1,500 |
-| **anna-garcia** | **5 × ₱550** | **₱2,750** |
+| Driver (`content/corridor.ts`) | Vehicle | Was | Cap | |
+|---|---|---|---|---|
+| kenneth-tan | Mirage, 2 seats | ₱400 | ₱467 | ok |
+| juan-cruz | Vios, 3 seats | ₱450 | ₱404 | over by ₱46 |
+| maria-reyes | Civic, 3 seats | ₱500 | ₱422 | over by ₱78 |
+| **anna-garcia** | **Innova, 5 seats** | **₱550** | **₱298** | **over by ₱252** |
 
-Manila→Baguio runs roughly ₱1,700–1,900 all-in. `anna-garcia` collects more than the
-whole trip costs and rides free. That is a fare. It is demo data, which makes it
-worse than a bug — seed listings teach drivers what a normal listing looks like.
+Three of four, not one. The weaker test — does the driver clear the whole trip cost —
+only catches `anna-garcia`, because the other two still ran at a loss overall. The
+per-seat cap is the standard worth holding: it asks whether the driver paid *their
+own share*, not merely whether they avoided outright profit.
+
+Seed prices were corrected to sit under the cap. They are demo data, which makes
+getting them right more important than it looks — seed listings teach drivers what a
+normal listing looks like.
 
 ## 2. The invariant
 
@@ -57,15 +63,19 @@ no price at which a compliant listing yields a profit.
 **Round down, never up.** Rounding up lets a listing clear cost by a few pesos, which
 is the whole thing you are trying to prevent.
 
-Worked example — `anna-garcia`, 246 km, van at ~10 km/L, fuel ₱62/L, tolls ₱600:
+Worked example — `anna-garcia`, 246 km, Innova at ~12 km/L, diesel ₱58/L, tolls ₱600:
 
 ```
-fuelEstimate = 246/10 × 62   = ₱1,525
-tripCost     = 1,525 + 600   = ₱2,125
-maxSeatPrice = 2,125 / 6     = ₱354      ← listed at ₱550, rejected
+fuelEstimate = 246/12 × 58   = ₱1,189
+tripCost     = 1,189 + 600   = ₱1,789
+maxSeatPrice = 1,789 / 6     = ₱298      ← listed at ₱550, rejected
 ```
 
-At the cap she collects ₱1,770 against ₱2,125 and still pays ₱355 herself. Correct.
+At the cap she collects ₱1,475 against ₱1,789 and still pays ₱314 herself. Correct.
+
+Note what the cap does as seats rise: five passengers split a fixed cost six ways, so
+the honest price falls to ₱298 against a ₱760 bus fare. Cheapness is the *output* of
+genuine cost-sharing, not a discount being funded by anyone.
 
 ## 3. `kmPerLitre` is platform-set, not driver-declared
 
