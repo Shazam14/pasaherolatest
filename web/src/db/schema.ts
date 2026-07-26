@@ -47,6 +47,10 @@ export const adPlacement = pgEnum("ad_placement", [
   "trip_detail",
   "request_ack",
 ]);
+export const supplyApplicantType = pgEnum("supply_applicant_type", [
+  "operator",
+  "hero_driver",
+]);
 export const routeRequestPain = pgEnum("route_request_pain", [
   "too_expensive",
   "no_late_night",
@@ -170,6 +174,22 @@ export const routeRequests = pgTable("route_requests", {
   details: text("details"),
   frequency: varchar("frequency", { length: 100 }),
   contact: varchar("contact", { length: 255 }).notNull(),
+  userAgent: text("user_agent"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+});
+
+export const supplyApplications = pgTable("supply_applications", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  applicantType: supplyApplicantType("applicant_type").notNull(),
+  name: varchar("name", { length: 200 }).notNull(),
+  contact: varchar("contact", { length: 255 }).notNull(),
+  corridor: varchar("corridor", { length: 200 }).notNull(),
+  // Operators only — the franchise that makes them legal to aggregate.
+  cpcNumber: varchar("cpc_number", { length: 100 }),
+  // Hero Drivers only.
+  vehicleClass: vehicleClass("vehicle_class"),
+  seats: integer("seats"),
+  notes: text("notes"),
   userAgent: text("user_agent"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });

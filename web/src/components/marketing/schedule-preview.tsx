@@ -66,9 +66,6 @@ export function SchedulePreview() {
                     <span className="text-base font-semibold tracking-tight tnum">
                       ₱{s.price.toLocaleString()}
                     </span>
-                    <button className="hidden md:inline-flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-full border border-[color:var(--border-strong)] hover:bg-[color:var(--accent)] hover:text-[color:var(--accent-foreground)] hover:border-[color:var(--accent)] transition-colors">
-                      Reserve
-                    </button>
                   </div>
                 </li>
               );

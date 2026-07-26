@@ -47,7 +47,7 @@ export function BecomeHero() {
                 Become a Hero Driver <ArrowRight className="size-4" />
               </Link>
               <Link
-                href="/drivers/how-it-works"
+                href="/#how"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-[color:var(--foreground)] hover:text-[color:var(--accent)] transition-colors h-12 px-2"
               >
                 See how it works
