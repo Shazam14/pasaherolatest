@@ -42,6 +42,8 @@ export const adPlacement = pgEnum("ad_placement", [
   "confirmation",
   "receipt",
   "homepage",
+  "trip_detail",
+  "request_ack",
 ]);
 export const routeRequestPain = pgEnum("route_request_pain", [
   "too_expensive",
