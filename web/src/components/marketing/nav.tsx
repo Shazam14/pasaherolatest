@@ -16,7 +16,7 @@ export function Nav() {
           <a href="#faq" className="hover:text-[color:var(--foreground)] transition-colors">FAQ</a>
         </nav>
         <div className="flex items-center gap-2">
-          <Link href="/operators" className="hidden md:inline-flex">
+          <Link href="/drivers/apply?as=operator" className="hidden md:inline-flex">
             <Button variant="ghost" size="sm">For operators</Button>
           </Link>
           <Button variant="dark" size="sm">Sign in</Button>

@@ -1,23 +1,23 @@
 const faqs = [
   {
     q: "Is Pasahero PH a ride-hailing app like Grab?",
-    a: "No. We're an inter-region booking platform — think bus and van seats, not on-demand rides. We aggregate verified operators (Victory Liner, Genesis, Joybus, UV Express, etc.) so you can compare and reserve in one place.",
+    a: "No. We're building an inter-region booking platform — bus and van seats, not on-demand rides. The idea is that you compare licensed operators on a route and book in one place. We're not live yet, so nothing is bookable today.",
   },
   {
     q: "How do you make money if drivers keep 100%?",
-    a: "Three ways: a small passenger booking fee, sponsored placements and ads on our results pages, and a software subscription for transport operators who want bulk schedule management. None of it touches the driver's fare.",
+    a: "Advertising, mainly — sponsored placements alongside results and on booking confirmations. Later, a software subscription for operators who want bulk schedule management. We never take a cut of the fare, and carpool listings carry no booking fee at all.",
   },
   {
     q: "What corridors do you cover?",
-    a: "Beta launches with Manila ⇆ Baguio. Next: Cebu ⇆ Bohol, Manila ⇆ Batangas (Mindoro/Boracay gateway), and Cavite/Laguna ⇆ Manila daily commuter.",
+    a: "None yet. Manila ⇆ Baguio is the one we're opening first. La Union, Clark, Subic, Tagaytay, Batangas and Naga are lined up behind it — but which we actually open depends on what commuters ask for, so tell us your route.",
   },
   {
     q: "Can I pay in cash?",
-    a: "Yes. You can reserve now and pay cash at the terminal, or pay online via GCash, Maya, or card. Your choice.",
+    a: "That's the plan — reserve online, then pay cash at the terminal or by GCash, Maya, or card. Payments aren't built yet, so this is what we're working toward rather than something you can do now.",
   },
   {
-    q: "Are operators verified?",
-    a: "Every operator must show an active LTFRB Certificate of Public Convenience and proof of passenger insurance before they can list seats on the platform.",
+    q: "Will operators be verified?",
+    a: "Yes. Before any operator can list seats they'll have to show an active LTFRB Certificate of Public Convenience and proof of passenger insurance. That's why we're onboarding licensed operators first, ahead of anything else.",
   },
 ];
 

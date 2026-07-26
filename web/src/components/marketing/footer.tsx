@@ -16,25 +16,16 @@ export function Footer() {
             title="Travel"
             links={[
               { href: "/search?corridor=manila-baguio", label: "Manila ⇆ Baguio" },
-              { href: "#operators", label: "All operators" },
-              { href: "/help", label: "Help center" },
+              { href: "/request-corridor", label: "Request a corridor" },
+              { href: "/#corridors", label: "All corridors" },
             ]}
           />
           <FooterCol
             title="For operators"
             links={[
-              { href: "/operators", label: "List your schedules" },
-              { href: "/operators#dispatch", label: "Dispatch software" },
-              { href: "/operators#advertise", label: "Advertise" },
-            ]}
-          />
-          <FooterCol
-            title="Company"
-            links={[
-              { href: "/about", label: "About" },
-              { href: "/legal/terms", label: "Terms" },
-              { href: "/legal/privacy", label: "Privacy" },
-              { href: "/legal/data-protection", label: "Data Protection" },
+              { href: "/drivers/apply?as=operator", label: "List your schedules" },
+              { href: "/drivers/apply?as=driver", label: "Become a Hero Driver" },
+              { href: "/#operators", label: "Lines we want on board" },
             ]}
           />
         </div>
